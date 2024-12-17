@@ -1,12 +1,127 @@
 <script lang="ts" setup>
-//
+import { uploaded_video, selected_qp } from "~/data";
+/*
+  models
+*/
+const video_loading = ref(false);
+
+const alert = ref({
+  show: false,
+  text: "",
+  timeout: 3000,
+  color: "error",
+});
+
+/*
+  methods
+*/
+const compressVideo = async () => {
+  if (!uploaded_video.value) {
+    alert.value.text = "Please upload a video file";
+    alert.value.color = "error";
+    alert.value.show = true;
+    return;
+  }
+
+  if (selected_qp.value.length <= 0) {
+    alert.value.text = "Please select at least one Quantization Parameter";
+    alert.value.color = "error";
+    alert.value.show = true;
+    return;
+  }
+  /*  */
+
+  video_loading.value = true;
+
+  const form_data = new FormData();
+
+  form_data.append("video", uploaded_video.value);
+  form_data.append("qp", JSON.stringify(selected_qp.value));
+
+  try {
+    const res = await $fetch("https://ahmed-gharghar.tech/api/upload_video", {
+      method: "POST",
+      body: form_data,
+    });
+
+    console.log(res);
+    alert.value.text = "Video compressed successfully";
+    alert.value.color = "success";
+    alert.value.show = true;
+    //
+  } catch (error) {
+    console.log(error);
+  } finally {
+    video_loading.value = false;
+  }
+};
 </script>
 
 <template>
-  <div>
-    <h1 class="mb-5 text-center text-green-accent-2">Video Compression App</h1>
+  <v-row
+    class="flex-column align-center ga-2"
+    no-gutters
+  >
+    <v-col cols="12">
+      <h1 class="mb-5 text-center text-green-accent-2">
+        Video Compression App
+      </h1>
+    </v-col>
 
-    <UploadVideo />
-    
-  </div>
+    <v-col
+      cols="12"
+      md="6"
+    >
+      <v-card class="bg-transparent pa-0">
+        <v-stepper
+          :items="[
+            'Upload video',
+            'Quantization Parameters',
+            'Get your results',
+          ]"
+          :disabled="video_loading"
+        >
+          <template #item.1>
+            <upload-video />
+          </template>
+
+          <template #item.2>
+            <qp-values />
+          </template>
+
+          <template #item.3>
+            <v-btn
+              class="mt-5"
+              variant="tonal"
+              color="green-accent-2"
+              :loading="video_loading"
+              block
+              @click="compressVideo"
+            >
+              Compress Video
+            </v-btn>
+          </template>
+        </v-stepper>
+      </v-card>
+    </v-col>
+
+    <v-snackbar
+      v-model="alert.show"
+      :timeout="alert.timeout"
+      :color="alert.color"
+    >
+      {{ alert.text }}
+
+      <template #actions>
+        <v-btn
+          color="white"
+          variant="text"
+          icon
+          @click="alert.show = false"
+        >
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
+  </v-row>
 </template>

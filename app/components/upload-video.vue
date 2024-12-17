@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-/*
-    models
-*/
-const uploaded_video = ref(null);
-
+import { uploaded_video } from "~/data";
 //
 </script>
 
@@ -16,15 +12,28 @@ const uploaded_video = ref(null);
       <v-card-title class="mb-5 text-green-accent-2">
         <h2>Upload your Video:</h2>
       </v-card-title>
+
       <v-card-text>
-        <v-file-input
-          v-model:model-value="uploaded_video"
-          variant="outlined"
-          prepend-inner-icon="mdi-video"
-          label="upload video"
-          show-size
-          prepend-icon
-        />
+        <v-card class="pa-0 bg-transparent">
+          <v-card-item class="pa-0">
+            <v-card-title class="text-green-accent-2">
+              <h3>Upload Video</h3>
+            </v-card-title>
+            <v-card-subtitle class="mb-5">
+              Select the video file to compress:
+            </v-card-subtitle>
+            <v-file-input
+              v-model:model-value="uploaded_video"
+              variant="outlined"
+              label="upload video"
+              color="green-accent-2"
+              accept=".y4m, video/*"
+              prepend-inner-icon="mdi-video"
+              prepend-icon=""
+              show-size
+            />
+          </v-card-item>
+        </v-card>
       </v-card-text>
     </v-card-item>
   </v-card>
