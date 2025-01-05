@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     compatibilityVersion: 4
   },
 
-  ssr: true,
+  ssr: false,
 
   // when enabling ssr option you need to disable inlineStyles and maybe devLogs
   features: {
@@ -26,7 +26,11 @@ export default defineNuxtConfig({
   },
 
   css: [],
-  modules: ['@nuxt/fonts', 'vuetify-nuxt-module', '@nuxt/eslint'],
+  modules: ['@nuxt/fonts', 'vuetify-nuxt-module', '@nuxt/eslint', 'nuxt-echarts'],
+  echarts: {
+    charts: ['LineChart'],
+    components:['DatasetComponent', 'GridComponent', 'TitleComponent', 'TooltipComponent'],
+  },
 
   vuetify: {
     moduleOptions: {

@@ -1,5 +1,21 @@
 <script lang="ts" setup>
-import { uploaded_video, selected_qp } from "~/data";
+import "echarts";
+
+import {
+  uploaded_video,
+  selected_qp,
+  show_dialog,
+  bitrate_chart_option,
+  bitrate_h264,
+  bitrate_h265,
+  bitrate_differences,
+  psnr_chart_option,
+  psnr_h264,
+  psnr_h265,
+  psnr_differences,
+} from "~/data";
+
+import type { response } from "~/types";
 /*
   models
 */
@@ -39,12 +55,30 @@ const compressVideo = async () => {
   form_data.append("qp", JSON.stringify(selected_qp.value));
 
   try {
-    const res = await $fetch("https://ahmed-gharghar.tech/api/upload_video", {
-      method: "POST",
-      body: form_data,
+    const res: response = await $fetch(
+      "https://ahmed-gharghar.tech/api/upload_video",
+      {
+        method: "POST",
+        body: form_data,
+      }
+    );
+
+    /* update the xAxis depending on the last value for selected_qp */
+    bitrate_chart_option.value.xAxis.data = selected_qp.value.map((qp) => qp);
+    psnr_chart_option.value.xAxis.data = selected_qp.value.map((qp) => qp);
+
+    /* get the results */
+    res.results.forEach((result) => {
+      bitrate_h264.value.push(result.h264.bitrate / 1000);
+      bitrate_h265.value.push(result.h265.bitrate / 1000);
+      bitrate_differences.value.push(result.differences.bitrate / 1000);
+      psnr_h264.value.push(result.h264.psnr);
+      psnr_h265.value.push(result.h265.psnr);
+      psnr_differences.value.push(result.differences.psnr);
     });
 
-    console.log(res);
+    show_dialog.value = true;
+
     alert.value.text = "Video compressed successfully";
     alert.value.color = "success";
     alert.value.show = true;
@@ -58,52 +92,51 @@ const compressVideo = async () => {
 </script>
 
 <template>
-  <v-row
-    class="flex-column align-center ga-2"
-    no-gutters
-  >
-    <v-col cols="12">
-      <h1 class="mb-5 text-center text-green-accent-2">
-        Video Compression App
-      </h1>
-    </v-col>
-
-    <v-col
-      cols="12"
-      md="6"
+  <div>
+    <v-row
+      class="flex-column align-center ga-2"
+      no-gutters
     >
-      <v-card class="bg-transparent pa-0">
-        <v-stepper
-          :items="[
-            'Upload video',
-            'Quantization Parameters',
-            'Get your results',
-          ]"
-          :disabled="video_loading"
-        >
-          <template #item.1>
-            <upload-video />
-          </template>
+      <v-col cols="12">
+        <h1 class="mb-5 text-center text-green-accent-2">
+          Video Compression App
+        </h1>
+      </v-col>
 
-          <template #item.2>
-            <qp-values />
-          </template>
+      <v-col
+        cols="12"
+        md="6"
+      >
+        <v-card class="bg-transparent pa-0">
+          <v-stepper
+            :items="['Upload video', 'Quantization Parameters']"
+            :disabled="video_loading"
+          >
+            <template #item.1>
+              <upload-video />
+            </template>
 
-          <template #item.3>
-            <v-btn
-              class="mt-5"
-              variant="tonal"
-              color="green-accent-2"
-              :loading="video_loading"
-              block
-              @click="compressVideo"
-            >
-              Compress Video
-            </v-btn>
-          </template>
-        </v-stepper>
-      </v-card>
-    </v-col>
+            <template #item.2>
+              <qp-values />
+              <v-btn
+                class="mt-5"
+                variant="tonal"
+                color="green-accent-2"
+                :loading="video_loading"
+                block
+                @click="compressVideo"
+              >
+                Compress Video
+              </v-btn>
+            </template>
+          </v-stepper>
+        </v-card>
+      </v-col>
+    </v-row>
+    <!--  -->
+
+    <result-dialog v-model="show_dialog" />
+    <!--  -->
 
     <v-snackbar
       v-model="alert.show"
@@ -123,5 +156,5 @@ const compressVideo = async () => {
         </v-btn>
       </template>
     </v-snackbar>
-  </v-row>
+  </div>
 </template>

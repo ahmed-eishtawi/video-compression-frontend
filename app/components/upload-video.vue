@@ -14,7 +14,10 @@ import { uploaded_video } from "~/data";
       </v-card-title>
 
       <v-card-text>
-        <v-card class="pa-0 bg-transparent">
+        <v-card
+          elevation="0"
+          class="bg-transparent pa-0"
+        >
           <v-card-item class="pa-0">
             <v-card-title class="text-green-accent-2">
               <h3>Upload Video</h3>
