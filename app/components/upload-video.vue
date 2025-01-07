@@ -1,23 +1,17 @@
 <script lang="ts" setup>
-import { uploaded_video } from "~/data";
+import { uploaded_video } from '~/data'
 //
 </script>
 
 <template>
-  <v-card
-    border
-    rounded="lg"
-  >
+  <v-card border rounded="lg">
     <v-card-item>
       <v-card-title class="mb-5 text-green-accent-2">
         <h2>Upload your Video:</h2>
       </v-card-title>
 
       <v-card-text>
-        <v-card
-          elevation="0"
-          class="bg-transparent pa-0"
-        >
+        <v-card elevation="0" class="bg-transparent pa-0">
           <v-card-item class="pa-0">
             <v-card-title class="text-green-accent-2">
               <h3>Upload Video</h3>

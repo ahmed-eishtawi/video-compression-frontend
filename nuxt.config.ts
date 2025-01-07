@@ -12,24 +12,34 @@ export default defineNuxtConfig({
   // when enabling ssr option you need to disable inlineStyles and maybe devLogs
   features: {
     inlineStyles: false,
-    devLogs: false,
+    devLogs: false
   },
 
   build: {
-    transpile: ['vuetify'],
+    transpile: ['vuetify']
   },
 
   vite: {
     ssr: {
-      noExternal: ['vuetify'],
-    },
+      noExternal: ['vuetify']
+    }
   },
 
   css: [],
-  modules: ['@nuxt/fonts', 'vuetify-nuxt-module', '@nuxt/eslint', 'nuxt-echarts'],
+  modules: [
+    '@nuxt/fonts',
+    'vuetify-nuxt-module',
+    '@nuxt/eslint',
+    'nuxt-echarts'
+  ],
   echarts: {
     charts: ['LineChart'],
-    components:['DatasetComponent', 'GridComponent', 'TitleComponent', 'TooltipComponent'],
+    components: [
+      'DatasetComponent',
+      'GridComponent',
+      'TitleComponent',
+      'TooltipComponent'
+    ]
   },
 
   vuetify: {
@@ -41,15 +51,15 @@ export default defineNuxtConfig({
         prefersColorScheme: false,
 
         prefersColorSchemeOptions: {
-          useBrowserThemeOnly: false,
-        },
+          useBrowserThemeOnly: false
+        }
       },
 
       // /* If customizing sass global variables ($utilities, $reset, $color-pack, $body-font-family, etc) */
       // disableVuetifyStyles: true,
       styles: {
-        configFile: 'assets/settings.scss',
-      },
-    },
-  },
+        configFile: 'assets/settings.scss'
+      }
+    }
+  }
 })

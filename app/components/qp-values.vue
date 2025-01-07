@@ -1,26 +1,23 @@
 <script setup lang="ts">
-import { valid_qp_values , selected_qp } from "~/data/";
+import { valid_qp_values, selected_qp } from '~/data/'
 
 /*
     methods
 */
 const handleSelectQP = (qp: number) => {
   if (selected_qp.value.includes(qp)) {
-    selected_qp.value = selected_qp.value.filter((value) => value !== qp);
+    selected_qp.value = selected_qp.value.filter((value) => value !== qp)
   }
   //
   else {
-    selected_qp.value.push(qp);
+    selected_qp.value.push(qp)
   }
-};
+}
 //
 </script>
 
 <template>
-  <v-card
-    border
-    rounded="lg"
-  >
+  <v-card border rounded="lg">
     <v-card-item>
       <v-card-title class="text-green-accent-2">
         <h2>Quantization Parameters:</h2>
@@ -36,7 +33,7 @@ const handleSelectQP = (qp: number) => {
           :key="qp"
           variant="tonal"
           :color="selected_qp.includes(qp) ? 'green-accent-2' : 'white'"
-          :disabled="selected_qp.length === 5 && !selected_qp.includes(qp)"
+          :disabled="selected_qp.length === 3 && !selected_qp.includes(qp)"
           icon
           @click="handleSelectQP(qp)"
         >
