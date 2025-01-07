@@ -17,7 +17,20 @@ import {
 } from '~/data'
 
 import type { response } from '~/types'
-
+//
+/*
+  composables
+*/
+useHead({
+  title: 'Video Compression App',
+  meta: [
+    {
+      name: 'description',
+      content: 'A video compression app using Nuxt.js and Vite'
+    }
+  ]
+})
+//
 /*
   models
 */

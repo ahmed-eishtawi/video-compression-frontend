@@ -92,28 +92,32 @@ const downloadResults = (): void => {
           justify="space-between"
         >
           <v-col cols="12" md="5">
-            <VChart
-              ref="bitrate_chart"
-              :init-options="{
-                width: 'auto',
-                height: '350px'
-              }"
-              :option="bitrate_chart_option"
-            />
+            <ClientOnly>
+              <VChart
+                ref="bitrate_chart"
+                :init-options="{
+                  width: 'auto',
+                  height: '350px'
+                }"
+                :option="bitrate_chart_option"
+              />
+            </ClientOnly>
           </v-col>
           <!--  -->
 
           <v-divider v-if="$vuetify.display.mdAndUp" vertical thickness="2" />
 
           <v-col cols="12" md="5">
-            <VChart
-              ref="psnr_chart"
-              :init-options="{
-                width: 'auto',
-                height: '350px'
-              }"
-              :option="psnr_chart_option"
-            />
+            <ClientOnly>
+              <VChart
+                ref="psnr_chart"
+                :init-options="{
+                  width: 'auto',
+                  height: '350px'
+                }"
+                :option="psnr_chart_option"
+              />
+            </ClientOnly>
           </v-col>
           <!--  -->
 
