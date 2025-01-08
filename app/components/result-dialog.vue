@@ -7,6 +7,7 @@ import {
 } from '~/data'
 
 import * as XLSX from 'xlsx'
+import type { render } from 'vue'
 //
 /*
   models
@@ -97,7 +98,8 @@ const downloadResults = (): void => {
                 ref="bitrate_chart"
                 :init-options="{
                   width: 'auto',
-                  height: '350px'
+                  height: '350px',
+                  renderer: 'svg'
                 }"
                 :option="bitrate_chart_option"
               />
@@ -113,7 +115,8 @@ const downloadResults = (): void => {
                 ref="psnr_chart"
                 :init-options="{
                   width: 'auto',
-                  height: '350px'
+                  height: '350px',
+                  renderer: 'svg'
                 }"
                 :option="psnr_chart_option"
               />
