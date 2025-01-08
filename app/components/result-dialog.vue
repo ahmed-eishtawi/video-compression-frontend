@@ -30,7 +30,7 @@ const downloadChart = (chartRef: any, filename: string): void => {
     const dataURL = chartRef.getDataURL({
       type: 'png',
       pixelRatio: 2,
-      backgroundColor: '#fff'
+      backgroundColor: 'transparent'
     })
     const link = document.createElement('a')
     link.href = dataURL

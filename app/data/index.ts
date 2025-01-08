@@ -26,7 +26,9 @@ export const bitrate_chart_option = ref({
   },
   toolbox: {
     feature: {
-      saveAsImage: {}
+      saveAsImage: {
+        backgroundColor: 'transparent'
+      }
     }
   },
   legend: {
