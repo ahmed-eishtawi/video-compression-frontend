@@ -50,7 +50,8 @@ const alert = ref({
 watch(show_dialog, () => {
   /* reset the Table of Content values when close the result Dialog */
   if (!show_dialog.value) {
-    table_of_content.value = []
+    console.log('reset')
+    resetData()
   }
 })
 //
@@ -123,10 +124,31 @@ const compressVideo = async () => {
     alert.value.show = true
     //
   } catch (error) {
+    alert.value.text = 'Check your internet connection and try again'
+    alert.value.color = 'error'
+    alert.value.timeout = 5000
+    alert.value.show = true
+
     console.log(error)
   } finally {
     video_loading.value = false
   }
+}
+//
+const resetData = () => {
+  bitrate_h264.value = []
+  bitrate_h265.value = []
+  bitrate_differences.value = []
+  bitrate_chart_option.value.series[0].data = bitrate_h264.value
+  bitrate_chart_option.value.series[1].data = bitrate_h265.value
+
+  psnr_h264.value = []
+  psnr_h265.value = []
+  psnr_differences.value = []
+  psnr_chart_option.value.series[0].data = psnr_h264.value
+  psnr_chart_option.value.series[1].data = psnr_h265.value
+
+  table_of_content.value = []
 }
 //
 </script>
@@ -151,7 +173,7 @@ const compressVideo = async () => {
             </template>
 
             <template #item.2>
-              <qp-values />
+              <qp-values :disabled="video_loading" />
               <v-btn
                 class="mt-5"
                 variant="tonal"

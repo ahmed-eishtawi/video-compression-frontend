@@ -7,7 +7,6 @@ import {
 } from '~/data'
 
 import * as XLSX from 'xlsx'
-import type { render } from 'vue'
 //
 /*
   models
@@ -19,6 +18,7 @@ const bitrate_chart = ref(null)
 /*
   methods
 */
+
 const downloadExcel = (): void => {
   const wb = XLSX.utils.book_new()
   const ws = XLSX.utils.json_to_sheet(table_of_content.value)
@@ -99,7 +99,7 @@ const downloadResults = (): void => {
                 :init-options="{
                   width: 'auto',
                   height: '350px',
-                  renderer: 'svg'
+                  renderer: 'canvas'
                 }"
                 :option="bitrate_chart_option"
               />
@@ -116,7 +116,7 @@ const downloadResults = (): void => {
                 :init-options="{
                   width: 'auto',
                   height: '350px',
-                  renderer: 'svg'
+                  renderer: 'canvas'
                 }"
                 :option="psnr_chart_option"
               />
