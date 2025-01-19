@@ -7,7 +7,6 @@ export default defineNuxtConfig({
     compatibilityVersion: 4
   },
 
-  
   ssr: true,
   nitro: {
     preset: 'netlify'
@@ -34,8 +33,33 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     'vuetify-nuxt-module',
     '@nuxt/eslint',
-    'nuxt-echarts'
+    'nuxt-echarts',
+    '@vesp/nuxt-fontawesome'
   ],
+
+  fontawesome: {
+    icons: {
+      solid: ['cog', 'coffee', 'user'],
+      regular: ['comment'],
+      brands: [
+        'faHtml5',
+        'faCss3Alt',
+        'faJs',
+        'faVuejs',
+        'faNodeJs',
+        'faPython',
+        'faJava',
+        'faFlutter',
+        'faLaravel',
+        'faWordpress',
+        'faDocker',
+        'faAws',
+        'faGit',
+        'faGithub'
+      ]
+    }
+  },
+
   echarts: {
     charts: ['LineChart'],
     components: [

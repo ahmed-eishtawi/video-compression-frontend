@@ -14,3 +14,17 @@ export type response = {
   message: string
   results: results[]
 }
+
+/* "about" types */
+
+type technology = {
+  text: string
+  icon?: string
+}
+
+export type member = {
+  name: string
+  role: string
+  technologies: technology[]
+  githubURL: string
+}

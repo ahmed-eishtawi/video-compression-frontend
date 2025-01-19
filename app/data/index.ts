@@ -1,3 +1,5 @@
+import type { member } from '~/types'
+
 export const uploaded_video = ref(null)
 
 export const valid_qp_values = ref<number[]>(
@@ -140,3 +142,183 @@ export const psnr_chart_option = ref({
     }
   ]
 })
+/* about the team */
+
+export const project_team = ref<member[]>([
+  {
+    name: 'Ahmed Gharghar',
+    role: 'Full Stack Developer',
+    technologies: [
+      {
+        text: 'HTML',
+        icon: 'fa-brands fa-html5'
+      },
+      {
+        text: 'CSS',
+        icon: 'fa-brands fa-css3-alt'
+      },
+      {
+        text: 'JavaScript',
+        icon: 'fa-brands fa-js'
+      },
+      {
+        text: 'Vue',
+        icon: 'fa-brands fa-vuejs'
+      },
+      {
+        text: 'Nuxt 3',
+        icon: ''
+      },
+      {
+        text: 'Node.js',
+        icon: 'fa-brands fa-node-js'
+      },
+      {
+        text: 'Python',
+        icon: 'fa-brands fa-python'
+      },
+      {
+        text: 'Java',
+        icon: 'fa-brands fa-java'
+      },
+      {
+        text: 'Docker',
+        icon: 'fa-brands fa-docker'
+      },
+      {
+        text: 'AWS',
+        icon: 'fa-brands fa-aws'
+      },
+      {
+        text: 'Git',
+        icon: 'fa-brands fa-git'
+      },
+      {
+        text: 'Github',
+        icon: 'fa-brands fa-github'
+      }
+    ],
+    githubURL: 'https://github.com/ahmed-eishtawi'
+  },
+  {
+    name: 'Ahmed Abusoba',
+    role: 'Backend Developer',
+    technologies: [
+      {
+        text: 'HTML',
+        icon: 'fa-brands fa-html5'
+      },
+      {
+        text: 'CSS',
+        icon: 'fa-brands fa-css3-alt'
+      },
+      {
+        text: 'JavaScript',
+        icon: 'fa-brands fa-js'
+      },
+      {
+        text: 'Vue',
+        icon: 'fa-brands fa-vuejs'
+      },
+      {
+        text: 'Python',
+        icon: 'fa-brands fa-python'
+      },
+      {
+        text: 'Java',
+        icon: 'fa-brands fa-java'
+      },
+      {
+        text: 'Wordpress',
+        icon: 'fa-brands fa-wordpress'
+      },
+      {
+        text: 'Laravel',
+        icon: 'fa-brands fa-laravel'
+      },
+      {
+        text: 'Git',
+        icon: 'fa-brands fa-git'
+      },
+      {
+        text: 'Github',
+        icon: 'fa-brands fa-github'
+      }
+    ],
+    githubURL: 'https://github.com/aabusoba'
+  },
+  {
+    name: 'Kareem Edres',
+    role: 'Frontend Developer',
+    technologies: [
+      {
+        text: 'HTML',
+        icon: 'fa-brands fa-html5'
+      },
+      {
+        text: 'CSS',
+        icon: 'fa-brands fa-css3-alt'
+      },
+      {
+        text: 'JavaScript',
+        icon: 'fa-brands fa-js'
+      },
+      {
+        text: 'Node.js',
+        icon: 'fa-brands fa-node-js'
+      },
+      {
+        text: 'Python',
+        icon: 'fa-brands fa-python'
+      },
+      {
+        text: 'Java',
+        icon: 'fa-brands fa-java'
+      },
+      {
+        text: 'Flutter',
+        icon: 'fa-brands fa-flutter'
+      },
+      {
+        text: 'Git',
+        icon: 'fa-brands fa-git'
+      },
+      {
+        text: 'Github',
+        icon: 'fa-brands fa-github'
+      }
+    ],
+    githubURL: 'https://github.com/karemed'
+  },
+  {
+    name: 'Abdulaziz Fhid',
+    role: 'Desktop Developer',
+    technologies: [
+      {
+        text: 'C sharp',
+        icon: ''
+      },
+      {
+        text: 'Python',
+        icon: 'fa-brands fa-python'
+      },
+      {
+        text: 'Java',
+        icon: 'fa-brands fa-java'
+      },
+      {
+        text: 'Wordpress',
+        icon: 'fa-brands fa-wordpress'
+      },
+      {
+        text: 'Git',
+        icon: 'fa-brands fa-git'
+      },
+      {
+        text: 'Github',
+        icon: 'fa-brands fa-github'
+      }
+    ],
+    githubURL: 'https://github.com/Abdulaziz-Fhid'
+  }
+])

@@ -13,7 +13,8 @@ import {
   psnr_h264,
   psnr_h265,
   psnr_differences,
-  table_of_content
+  table_of_content,
+  project_team
 } from '~/data'
 
 import type { response } from '~/types'
@@ -34,6 +35,9 @@ useHead({
 /*
   models
 */
+
+const tab = ref('home')
+
 const video_loading = ref(false)
 
 const alert = ref({
@@ -45,12 +49,11 @@ const alert = ref({
 //
 
 /*
-  watchEffect
+  watch
 */
 watch(show_dialog, () => {
   /* reset the Table of Content values when close the result Dialog */
   if (!show_dialog.value) {
-    console.log('reset')
     resetData()
   }
 })
@@ -77,6 +80,9 @@ const compressVideo = async () => {
   video_loading.value = true
 
   const form_data = new FormData()
+
+  /* sort the order of qp values, only for UX needs */
+  selected_qp.value = selected_qp.value.sort((a, b) => a - b)
 
   form_data.append('video', uploaded_video.value)
   form_data.append('qp', JSON.stringify(selected_qp.value))
@@ -161,32 +167,66 @@ const resetData = () => {
           Video Compression App
         </h1>
       </v-col>
+      <!--  -->
 
-      <v-col cols="12" md="6">
-        <v-card class="bg-transparent pa-0">
-          <v-stepper
-            :items="['Upload video', 'Quantization Parameters']"
-            :disabled="video_loading"
-          >
-            <template #item.1>
-              <upload-video />
-            </template>
+      <v-col cols="12" md="5" class="mb-2">
+        <v-tabs v-model="tab" color="green-accent-2" grow>
+          <v-tab value="home">
+            <v-icon>mdi-home-outline</v-icon>
+            <span class="ml-2">Home</span>
+          </v-tab>
+          <!--  -->
 
-            <template #item.2>
-              <qp-values :disabled="video_loading" />
-              <v-btn
-                class="mt-5"
-                variant="tonal"
-                color="green-accent-2"
-                :loading="video_loading"
-                block
-                @click="compressVideo"
+          <v-tab value="about">
+            <v-icon>mdi-information-outline</v-icon>
+            <span class="ml-2">About</span>
+          </v-tab>
+        </v-tabs>
+      </v-col>
+
+      <v-col cols="12" md="8">
+        <v-tabs-window v-model="tab">
+          <v-tabs-window-item value="home">
+            <v-card class="bg-transparent pa-0">
+              <v-stepper
+                :items="['Upload video', 'Quantization Parameters']"
+                :disabled="video_loading"
               >
-                Compress Video
-              </v-btn>
-            </template>
-          </v-stepper>
-        </v-card>
+                <template #item.1>
+                  <upload-video />
+                </template>
+
+                <template #item.2>
+                  <qp-values :disabled="video_loading" />
+                  <v-btn
+                    class="mt-5"
+                    variant="tonal"
+                    color="green-accent-2"
+                    :loading="video_loading"
+                    block
+                    @click="compressVideo"
+                  >
+                    Compress Video
+                  </v-btn>
+                </template>
+              </v-stepper>
+            </v-card>
+          </v-tabs-window-item>
+          <!--  -->
+
+          <!-- if statement to hide the about when we in home,  -->
+          <v-tabs-window-item
+            v-if="tab === 'about'"
+            value="about"
+            class="d-flex flex-column justify-center align-center ga-3 mb-5"
+          >
+            <information-card
+              v-for="(member, index) in project_team"
+              :key="index"
+              :member="member"
+            />
+          </v-tabs-window-item>
+        </v-tabs-window>
       </v-col>
     </v-row>
     <!--  -->
