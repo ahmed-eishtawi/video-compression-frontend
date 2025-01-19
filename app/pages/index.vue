@@ -114,12 +114,12 @@ const compressVideo = async () => {
     selected_qp.value.forEach((qp, index) => {
       table_of_content.value.push({
         QP: qp,
-        'H264 bitrate': bitrate_h264.value[index],
-        'H265 bitrate': bitrate_h265.value[index],
-        'H264 PSNR': psnr_h264.value[index],
-        'H265 PSNR': psnr_h265.value[index],
-        'bitrate Difference': bitrate_differences.value[index],
-        'PSNR Difference': psnr_differences.value[index]
+        'H264 bitrate (Kb/s)': bitrate_h264.value[index],
+        'H265 bitrate (Kb/s)': bitrate_h265.value[index],
+        'H264 PSNR (db)': psnr_h264.value[index],
+        'H265 PSNR (db)': psnr_h265.value[index],
+        'bitrate Difference (Kb/s)': bitrate_differences.value[index],
+        'PSNR Difference (db)': psnr_differences.value[index]
       })
     })
 

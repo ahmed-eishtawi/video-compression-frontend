@@ -159,19 +159,6 @@ const downloadResults = (): void => {
       </v-card-text>
 
       <v-divider />
-
-      <!-- <v-card-actions>
-        <v-spacer />
-
-        <v-btn text="Close" variant="plain" @click="show_dialog = false" />
-
-        <v-btn
-          color="green-accent-2"
-          text="Download"
-          variant="tonal"
-          @click="downloadResults"
-        />
-      </v-card-actions> -->
     </v-card>
   </v-dialog>
 </template>
