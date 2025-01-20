@@ -88,13 +88,15 @@ const compressVideo = async () => {
   form_data.append('qp', JSON.stringify(selected_qp.value))
 
   try {
-    const res: response = await $fetch(
-      'https://ahmed-gharghar.tech/api/upload_video',
-      {
-        method: 'POST',
-        body: form_data
-      }
-    )
+    const url =
+      location.hostname == 'localhost'
+        ? 'http://localhost/api/upload_video'
+        : 'https://ahmed-gharghar.tech/api/upload_video'
+
+    const res: response = await $fetch(url, {
+      method: 'POST',
+      body: form_data
+    })
 
     /* update the xAxis depending on the last value for selected_qp */
     bitrate_chart_option.value.xAxis.data = selected_qp.value.map((qp) => qp)
