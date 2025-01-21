@@ -89,8 +89,9 @@ const compressVideo = async () => {
 
   try {
     const url =
-      location.hostname == 'localhost'
-        ? 'http://localhost/api/upload_video'
+      location.hostname == 'localhost' ||
+      /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/.test(location.hostname)
+        ? `http://${location.hostname}:4000/api/upload_video`
         : 'https://ahmed-gharghar.tech/api/upload_video'
 
     const res: response = await $fetch(url, {

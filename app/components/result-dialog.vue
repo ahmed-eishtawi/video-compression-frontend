@@ -136,6 +136,7 @@ const downloadResults = (): void => {
                 <v-data-table
                   hide-default-footer
                   hover
+                  :mobile="!$vuetify.display.mdAndUp"
                   :items="table_of_content"
                 />
               </v-card>

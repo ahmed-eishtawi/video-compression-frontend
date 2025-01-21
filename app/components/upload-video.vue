@@ -24,7 +24,6 @@ import { uploaded_video } from '~/data'
               variant="outlined"
               label="upload video"
               color="green-accent-2"
-              accept=".y4m, video/*"
               prepend-inner-icon="mdi-video"
               prepend-icon=""
               show-size
