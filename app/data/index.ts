@@ -57,12 +57,15 @@ export const bitrate_chart_option = ref({
     {
       name: 'H264',
       stack: 'H264',
+      symbol: 'emptyRect',
+      symbolSize: 12,
       data: bitrate_h264.value,
       type: 'line',
       label: {
         show: true,
         position: 'top',
-        color: 'white'
+        color: 'auto',
+        fontSize: 16
       },
       lineStyle: {
         width: 3
@@ -71,12 +74,18 @@ export const bitrate_chart_option = ref({
     {
       name: 'H265',
       stack: 'H265',
+      symbol: 'emptyCircle',
+      symbolSize: 12,
       data: bitrate_h265.value,
       type: 'line',
       label: {
         show: true,
-        position: 'top',
-        color: 'white'
+        position: 'bottom',
+        color: 'auto',
+        fontSize: 16
+      },
+      lineStyle: {
+        width: 3
       }
     }
   ]
@@ -118,12 +127,15 @@ export const psnr_chart_option = ref({
     {
       name: 'H264',
       stack: 'H264',
+      symbol: 'emptyRect',
+      symbolSize: 12,
       data: psnr_h264.value,
       type: 'line',
       label: {
         show: true,
         position: 'top',
-        color: 'white'
+        color: 'auto',
+        fontSize: 16
       },
       lineStyle: {
         width: 3
@@ -132,12 +144,18 @@ export const psnr_chart_option = ref({
     {
       name: 'H265',
       stack: 'H265',
+      symbol: 'emptyCircle',
+      symbolSize: 12,
       data: psnr_h265.value,
       type: 'line',
       label: {
         show: true,
-        position: 'top',
-        color: 'white'
+        position: 'bottom',
+        color: 'auto',
+        fontSize: 16
+      },
+      lineStyle: {
+        width: 3
       }
     }
   ]

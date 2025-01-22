@@ -105,24 +105,27 @@ const compressVideo = async () => {
 
     /* get the results */
     res.results.forEach((result) => {
-      bitrate_h264.value.push(result.h264.bitrate / 1000)
-      bitrate_h265.value.push(result.h265.bitrate / 1000)
-      bitrate_differences.value.push(result.differences.bitrate / 1000)
+      bitrate_h264.value.push(Number(result.h264.bitrate.toFixed(3)) / 1000)
+      bitrate_h265.value.push(Number(result.h265.bitrate.toFixed(3)) / 1000)
+      bitrate_differences.value.push(
+        Number(result.differences.bitrate.toFixed(3)) / 1000
+      )
 
-      psnr_h264.value.push(result.h264.psnr)
-      psnr_h265.value.push(result.h265.psnr)
-      psnr_differences.value.push(result.differences.psnr)
+      psnr_h264.value.push(Number(result.h264.psnr.toFixed(3)))
+      psnr_h265.value.push(Number(result.h265.psnr.toFixed(3)))
+      psnr_differences.value.push(Number(result.differences.psnr.toFixed(3)))
     })
 
     selected_qp.value.forEach((qp, index) => {
       table_of_content.value.push({
         QP: qp,
-        'H264 bitrate (Kb/s)': bitrate_h264.value[index],
-        'H265 bitrate (Kb/s)': bitrate_h265.value[index],
-        'H264 PSNR (db)': psnr_h264.value[index],
-        'H265 PSNR (db)': psnr_h265.value[index],
-        'bitrate Difference (Kb/s)': bitrate_differences.value[index],
-        'PSNR Difference (db)': psnr_differences.value[index]
+        'H264 bitrate (Kb/s)': bitrate_h264.value[index]?.toFixed(3),
+        'H265 bitrate (Kb/s)': bitrate_h265.value[index]?.toFixed(3),
+        'H264 PSNR (db)': psnr_h264.value[index]?.toFixed(3),
+        'H265 PSNR (db)': psnr_h265.value[index]?.toFixed(3),
+        'bitrate Difference (Kb/s)':
+          bitrate_differences.value[index]?.toFixed(3),
+        'PSNR Difference (db)': psnr_differences.value[index]?.toFixed(3)
       })
     })
 
