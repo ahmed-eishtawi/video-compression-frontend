@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { theme } from '~/data'
+
 defineProps({
   member: {
     type: Object,
@@ -12,13 +14,20 @@ defineProps({
     <v-row no-gutters class="align-center">
       <v-col md="6" cols="12">
         <v-card-item>
-          <v-card-title class="text-white">{{ member.name }}</v-card-title>
-          <v-card-subtitle class="text-white">
+          <v-card-title
+            :class="theme === 'dark' ? 'text-white' : 'text-black'"
+            >{{ member.name }}</v-card-title
+          >
+          <v-card-subtitle
+            :class="theme === 'dark' ? 'text-white' : 'text-black'"
+          >
             {{ member.role }}
           </v-card-subtitle>
           <v-card-text>
             <div class="mb-1">
-              <h4 class="text-white">Technologies:</h4>
+              <h4 :class="theme === 'dark' ? 'text-white' : 'text-black'">
+                Technologies:
+              </h4>
             </div>
             <!--  -->
 
@@ -27,7 +36,7 @@ defineProps({
                 v-for="technology in member.technologies"
                 :key="technology.text"
                 :value="technology.text"
-                color="grey-lighten-1"
+                :color="theme === 'dark' ? 'grey-lighten-1' : 'grey-darken-1'"
               >
                 <template #prepend>
                   <v-icon v-if="technology.icon" class="mr-2">
