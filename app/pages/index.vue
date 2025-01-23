@@ -14,7 +14,8 @@ import {
   psnr_h265,
   psnr_differences,
   table_of_content,
-  project_team
+  project_team,
+  theme
 } from '~/data'
 
 import type { response } from '~/types'
@@ -173,6 +174,13 @@ const resetData = () => {
           Video Compression App
         </h1>
       </v-col>
+      <v-fab
+        :color="theme"
+        class="mb-5"
+        icon="mdi-theme-light-dark"
+        variant="tonal"
+        @click="theme === 'dark' ? (theme = 'light') : (theme = 'dark')"
+      />
       <!--  -->
 
       <v-col cols="12" md="5" class="mb-2">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { valid_qp_values, selected_qp } from '~/data/'
+import { valid_qp_values, selected_qp, theme } from '~/data/'
 
 /*
     methods
@@ -32,7 +32,13 @@ const handleSelectQP = (qp: number) => {
           v-for="qp in valid_qp_values"
           :key="qp"
           variant="tonal"
-          :color="selected_qp.includes(qp) ? 'green-accent-2' : 'white'"
+          :color="
+            selected_qp.includes(qp)
+              ? 'green-accent-2'
+              : theme === 'dark'
+                ? 'white'
+                : 'dark'
+          "
           :disabled="selected_qp.length === 3 && !selected_qp.includes(qp)"
           icon
           @click="handleSelectQP(qp)"

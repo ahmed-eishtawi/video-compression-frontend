@@ -1,4 +1,5 @@
 import type { member } from '~/types'
+export const theme = ref<'dark' | 'light'>('dark')
 
 export const uploaded_video = ref(null)
 
